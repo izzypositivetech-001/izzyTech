@@ -114,11 +114,11 @@ bun dev            # or: npm run dev
 
 ## 💬 Connect with CodeBucks
 
-- 📺 YouTube — [youtube.com/codebucks](https://www.youtube.com/codebucks)
-- 🐦 X / Twitter — [@code_bucks](https://twitter.com/code_bucks)
-- 🌐 Website — [devdreaming.com](https://devdreaming.com)
-- ✉️ Email — [codebucks27@gmail.com](mailto:codebucks27@gmail.com)
-- 🧩 **Need a custom website built?** [Start a project →](https://codebucks.agency)
+- 📺 YouTube — [youtube.com/codebucks](https://www.youtube.com/izzytech)
+- 🐦 X / Twitter — [@IzzyTech](https://twitter.com/code_bucks)
+- 🌐 Website — [izzytech.com](https://devdreaming.com)
+- ✉️ Email — [izzypositivetech@gmail.com](mailto:codebucks27@gmail.com)
+- 🧩 **Need a custom website built?** [Start a project →](https://izzytech.com)
 
 ---
 
