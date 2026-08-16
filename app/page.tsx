@@ -5,7 +5,7 @@ import Hero from "@/components/hero"
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-dvh">
+    <main className="relative">
        <Hero />
     </main>
   )
