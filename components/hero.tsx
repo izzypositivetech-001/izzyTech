@@ -55,8 +55,11 @@ export default function Hero(): React.ReactElement {
 
       {/* {overlay} */}
 
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(108deg,rgba(15,15,12,0.78)_0%,rgba(15,15,12,0.78)_25%,rgba(15,15,12,0.78)_46%,rgba(15,15,12,0.78)_68%,rgba(15,15,12,0.78)_84%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(108deg,rgba(15,15,12,0.78)_0%,rgba(15,15,12,0.58)_22%,rgba(15,15,12,0.32)_46%,rgba(15,15,12,0.32)_68%,rgba(15,15,12,0.32)_84%)]" />
 
+
+
+      <div className="absolute inset-x-0 top-0 h-32 -z-10 bg-[linear-gradient(to_bottom,rgba(15,15,12,0.55)_0%,rgba(15,15,12,0.18)_55%,rgba(15,15,12,0)_100%)]" />
       {/*  */}
       {/* {Foreground content} */}
 
