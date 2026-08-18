@@ -4,9 +4,11 @@ import Image from "next/image"
 import { Button } from "./ui/button"
 import Link from "next/link"
 import { ArrowUpRightIcon } from "@phosphor-icons/react/ssr"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
-const MEDIA = {
+import { DayNightMode, DayNightSwitch } from "./widgets/day-night-switch"
+
+const MEDIA: Record<DayNightMode, { poster: string; video: string }> = {
   day: {
     poster: "/assets/hero-day-poster.webp",
     video: "/assets/hero-background-video.mp4",
@@ -17,11 +19,25 @@ const MEDIA = {
   },
 }
 
-export default function Hero(): React.ReactElement {
-  const [videoReady, setVideoReady] = useState(false)
-  const videoRef = useRef(null)
+export  function Hero(): React.ReactElement {
 
-  const { poster: posterSrc, video: videoSrc } = MEDIA["day"]
+      
+  const [mode, setMode] = useState<DayNightMode>("day")
+  const [videoReady, setVideoReady] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const { poster: posterSrc, video: videoSrc } = MEDIA[mode]
+
+  useEffect(() => {
+    setVideoReady(false)
+    const video = videoRef.current
+    if (!video) return
+
+    video.src = videoSrc
+    video.poster = posterSrc
+    video.load()
+    void video.play().catch(() => {})
+  }, [mode, videoSrc, posterSrc])
 
   return (
     <section className="relative isolate h-svh w-full overflow-hidden bg-overlay-ink text-overlay-cream">
@@ -29,18 +45,18 @@ export default function Hero(): React.ReactElement {
 
       <div className="absolute inset-0 -z-20">
         <video
-          src={videoSrc}
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
-          poster={posterSrc}
           className="h-full w-full object-cover sm:object-center"
           onCanPlay={() => setVideoReady(true)}
         />
 
         <Image
+          key={`hero-poster-${mode}`}
           src={posterSrc}
           alt="izzytech"
           fill
@@ -57,9 +73,7 @@ export default function Hero(): React.ReactElement {
 
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(108deg,rgba(15,15,12,0.78)_0%,rgba(15,15,12,0.58)_22%,rgba(15,15,12,0.32)_46%,rgba(15,15,12,0.32)_68%,rgba(15,15,12,0.32)_84%)]" />
 
-
-
-      <div className="absolute inset-x-0 top-0 h-32 -z-10 bg-[linear-gradient(to_bottom,rgba(15,15,12,0.55)_0%,rgba(15,15,12,0.18)_55%,rgba(15,15,12,0)_100%)]" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-[linear-gradient(to_bottom,rgba(15,15,12,0.55)_0%,rgba(15,15,12,0.18)_55%,rgba(15,15,12,0)_100%)]" />
       {/*  */}
       {/* {Foreground content} */}
 
@@ -104,6 +118,10 @@ export default function Hero(): React.ReactElement {
                 </Button>
               </div>
             </div>
+          </div>
+
+          <div className="absolute top-1/4 right-6 z-20 -translate-1/2 sm:right-10 lg:right-14">
+            <DayNightSwitch value={mode} onChange={setMode} />
           </div>
         </div>
       </div>
