@@ -3,10 +3,19 @@
 import Image from "next/image"
 import { Button } from "./ui/button"
 import Link from "next/link"
-import { ArrowUpRightIcon } from "@phosphor-icons/react/ssr"
+import { ArrowDownIcon, ArrowUpRightIcon } from "@phosphor-icons/react/ssr"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { DayNightMode, DayNightSwitch } from "./widgets/day-night-switch"
+import { weather } from "@/lib/weather"
+import { GeoLocation } from "@/lib/location"
+import { LiveLocator } from "./widgets/live-locator"
+
+type HeroProps = {
+  location: GeoLocation,
+  weather: weather | null
+}
+
 
 const MEDIA: Record<DayNightMode, { poster: string; video: string }> = {
   day: {
@@ -19,9 +28,8 @@ const MEDIA: Record<DayNightMode, { poster: string; video: string }> = {
   },
 }
 
-export  function Hero(): React.ReactElement {
 
-      
+export function Hero({location, weather}: HeroProps): React.ReactElement {
   const [mode, setMode] = useState<DayNightMode>("day")
   const [videoReady, setVideoReady] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -114,7 +122,7 @@ export  function Hero(): React.ReactElement {
                   variant={"ghost"}
                   className="h-11 rounded-md border border-overlay-cream/25 bg-overlay-cream/[0.06] px-5 text-sm font-medium backdrop-blur-[2px] hover:bg-overlay-cream/15 hover:text-overlay-cream"
                 >
-                  <Link href="#contact">Get In Touch </Link>
+                  <Link href="#contact">Get In Touch</Link>
                 </Button>
               </div>
             </div>
@@ -124,6 +132,37 @@ export  function Hero(): React.ReactElement {
             <DayNightSwitch value={mode} onChange={setMode} />
           </div>
         </div>
+     
+      {/* Bottom Stripe */}
+
+
+      <div className="shrink-0 pb-7 sm:pb-9">
+        {/*  left label, scroll text, temp, clock, location*/}
+        <div className="mx-auto flex w-full max-w-[1480px] flex-col items-start gap-3 px-6 sm:flex-row sm:justify-between sm:gap-4 sm:px-14 lg:px-14">
+           <p className="inline-flex items-center gap-2 rounded-full border border-overlay-cream/20 bg-overlay-ink/40
+           px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-overlay-cream/85 backdrop-blur-[2px]">
+
+            <span className="relative inline-flex size-1.5">
+            <span className="absolute animate-ping inline-flex h-full w-full rounded-full  bg-success/70 opacity-75" />
+            <span className="relative inline-flex rounded-full size-1.5 bg-success" />
+            </span>
+            Available for work Q3 2026
+           </p>
+
+           <div className="">
+              <span className="flex item-center gap-3 text-overlay-cream/65">
+                  <span className="flex items-center gap-3">
+                    <ArrowDownIcon weight="regular" size={14} className="animate-bounce size-6" />
+                    <span className="caption-uppercase">Scroll</span>
+                    <span className="h-px w-10 bg-overlay-cream/25" />
+                  </span>
+                  
+                  <LiveLocator location={location} weather={weather} />
+              </span>
+           </div>
+        </div>
+      </div>
+
       </div>
     </section>
   )
