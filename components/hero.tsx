@@ -10,6 +10,7 @@ import { DayNightMode, DayNightSwitch } from "./widgets/day-night-switch"
 import { weather } from "@/lib/weather"
 import { GeoLocation } from "@/lib/location"
 import { LiveLocator } from "./widgets/live-locator"
+import { TokenUsage } from "./widgets/token-usage"
 
 type HeroProps = {
   location: GeoLocation,
@@ -131,6 +132,15 @@ export function Hero({location, weather}: HeroProps): React.ReactElement {
           <div className="absolute top-1/4 right-6 z-20 -translate-1/2 sm:right-10 lg:right-14">
             <DayNightSwitch value={mode} onChange={setMode} />
           </div>
+
+            <div className="pointer-events-none absolute right-6 sm:right-10 lg:right-14 bottom-24 z-10 flex 
+              justify-end items-end">
+
+                <div className="pointer-events-auto">
+              <TokenUsage />
+                </div>
+            </div>
+
         </div>
      
       {/* Bottom Stripe */}
