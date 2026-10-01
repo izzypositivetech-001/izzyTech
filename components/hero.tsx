@@ -152,7 +152,7 @@ export function Hero({location, weather}: HeroProps): React.ReactElement {
            <p className="inline-flex items-center gap-2 rounded-full border border-overlay-cream/20 bg-overlay-ink/40
            px-3 py-1.5 font-mono text-[11px] tracking-[0.04em] text-overlay-cream/85 backdrop-blur-[2px]">
 
-            <span className="relative inline-flex size-1.5">
+            <span className="relative inline-flex size-1.5"> 
             <span className="absolute animate-ping inline-flex h-full w-full rounded-full  bg-success/70 opacity-75" />
             <span className="relative inline-flex rounded-full size-1.5 bg-success" />
             </span>
