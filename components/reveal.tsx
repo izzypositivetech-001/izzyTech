@@ -1,5 +1,5 @@
 "use client"
-import { PRACTICE_AREAS } from "@/lib/content"
+
 import { HTMLMotionProps, motion, Variants } from "motion/react"
 
 const revealVariants: Variants = {
@@ -43,8 +43,13 @@ export function RevealGroup({ as = "div", ...props }: RevealProps) {
 }
 
 //child
-export function Reveal({ as = "div", ...props }: { as: RevealTag }) {
+export function Reveal({ as = "div", ...props }: RevealProps) {
   const Component = motion[as] as typeof motion.div
 
-  return <Component variants={revealVariants} {...props} />
+  return (
+    <Component
+      variants={revealVariants}
+      {...props}
+    />
+  )
 }
